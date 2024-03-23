@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('votes', function (Blueprint $table) {
+            $table->id();
+            $table->string('theme');
+            $table->string('username');
+            $table->string('shifr');
+            $table->string('date');
+            $table->string('number');
+            $table->bigIncrements('category_id');
+            $table->enum('status',['0','1','2'])->default('0');
+            $table->string('file');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('votes');
+    }
+};
